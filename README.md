@@ -2,9 +2,11 @@
 
 Repositorio oficial del proyecto para el curso **SC-504 Lenguajes de Base de Datos**[cite: 1, 3]. El sistema modela una solución transaccional centralizada para la gestión de inventarios, clientes, órdenes y facturación de una empresa de bicicletas
 
+---
+
 📋 Descripción del Proyecto
 
-🛠️ Lo que ya está hecho
+### 🛠️ Lo que ya está hecho
 * **Modelo Físico y Relacional:** Creación de tablas normalizadas en Oracle para marcas, categorías, productos, precios, tiendas, inventarios, clientes, direcciones, teléfonos, órdenes y facturación, asegurando la integridad referencial mediante llaves primarias y foráneas
 * **Esquema de Control de Acceso (DCL):** Definición de roles de base de datos (`rol_admin_bike`, `rol_desarrollador_bike`, `rol_ventas_bike`, `rol_inventario_bike`) y usuarios estructurados según el perfil de seguridad
 * **Módulo de Autenticación y Auditoría (PL/SQL):** Implementación de tablas para control de sesiones (`bike_roles_sistema`, `bike_usuarios_sistema`, `bike_bitacora_accesos`), vistas analíticas, funciones de validación, cursores y el procedimiento almacenado principal (`sp_validar_login`) que registra el conteo de accesos y previene consultas directas desde la aplicación.
@@ -27,3 +29,5 @@ Para la conexión, pruebas y autenticación en el sistema transaccional de Oracl
 | **Desarrollador** | `bike_dev_usr` | `BikeStore1234Fide` | Programación y mantenimiento de estructuras PL/SQL, vistas y procedimientos. |
 | **Ventas / Cajero** | `bike_ventas_usr` | `BikeStore1234Fide` | Operaciones de clientes, órdenes, facturación y ejecución de login. |
 | **Inventario / Bodega** | `bike_inventario_usr` | `BikeStore1234Fide` | Control de productos, marcas, categorías y existencias en bodega. |
+
+La documentacion del proyecto se puede visualizar desde esta pagina: https://docs.google.com/document/d/1lWSneXxqh8dGPH3mjYEUpZJdX5BmsGJ0DUmhbvFavGQ/edit?usp=sharing 
