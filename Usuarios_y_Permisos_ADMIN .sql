@@ -1,6 +1,5 @@
 -- =====================================================================
 -- BLOQUE 1: DCL - DUEÑO DE ESQUEMA, ROLES Y USUARIOS DE ORACLE
--- (Ejecutar en Oracle SQL Developer conectado como ADMIN / SYSTEM)
 -- =====================================================================
 
 -- 1. Limpieza directa con IF EXISTS de Usuarios y Roles
@@ -15,7 +14,7 @@ DROP ROLE IF EXISTS rol_desarrollador_bike;
 DROP ROLE IF EXISTS rol_ventas_bike;
 DROP ROLE IF EXISTS rol_inventario_bike;
 
--- 2. Creación del dueño del esquema (Código de tu compañera)
+-- 2. Creación del dueño del esquema
 CREATE USER bike_owner IDENTIFIED BY "BikeStore1234Fide";
 
 GRANT CREATE SESSION, CREATE TABLE, CREATE VIEW,
@@ -24,7 +23,7 @@ GRANT CREATE SESSION, CREATE TABLE, CREATE VIEW,
 
 ALTER USER bike_owner QUOTA UNLIMITED ON DATA;
 
--- 3. Creación de Roles del Sistema Transaccional (Objetivo Específico 2)
+-- 3. Creación de Roles del Sistema Transaccional
 CREATE ROLE rol_admin_bike;
 CREATE ROLE rol_desarrollador_bike;
 CREATE ROLE rol_ventas_bike;
