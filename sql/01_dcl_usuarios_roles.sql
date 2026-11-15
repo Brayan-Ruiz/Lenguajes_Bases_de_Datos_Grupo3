@@ -7,7 +7,7 @@
 -- EJECUCIÓN: Conectado como ADMIN / SYSTEM en Oracle SQL Developer
 -- =====================================================================
 
--- 1. Limpieza directa con IF EXISTS de Usuarios y Roles (Oracle 23ai / 21c+)
+-- 1. Limpieza directa con IF EXISTS de Usuarios y Roles
 DROP USER IF EXISTS bike_owner CASCADE;
 DROP USER IF EXISTS bike_admin_usr CASCADE;
 DROP USER IF EXISTS bike_dev_usr CASCADE;
