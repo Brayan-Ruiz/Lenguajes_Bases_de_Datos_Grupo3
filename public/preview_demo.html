@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vista Previa Interactiva | Bike Store (SC-504)</title>
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --card-bg: #1e293b;
+            --accent: #38bdf8;
+            --accent-hover: #0284c7;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --success: #22c55e;
+            --danger: #ef4444;
+            --border: #334155;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, sans-serif; }
+        body { background: var(--bg-dark); color: var(--text-main); min-height: 100vh; }
+        .switcher {
+            background: #020617;
+            border-bottom: 1px solid var(--border);
+            padding: 0.85rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .switcher-btns { display: flex; gap: 0.5rem; }
+        .tab-btn {
+            background: var(--card-bg);
+            color: var(--text-main);
+            border: 1px solid var(--border);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+        .tab-btn.active { background: var(--accent); color: #0f172a; border-color: var(--accent); }
+        .view { display: none; padding: 2rem; }
+        .view.active { display: block; }
+        .login-wrapper {
+            min-height: calc(100vh - 120px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .login-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            width: 100%;
+            max-width: 430px;
+            padding: 2.25rem;
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.45);
+        }
+        .badge {
+            display: inline-block;
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--accent);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.25rem 0.65rem;
+            border-radius: 999px;
+            margin-bottom: 0.75rem;
+        }
+        .form-group { margin-bottom: 1.15rem; }
+        label { display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.4rem; }
+        input, select {
+            width: 100%;
+            padding: 0.75rem 0.9rem;
+            border-radius: 8px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: #0f172a;
+            color: var(--text-main);
+            font-size: 0.95rem;
+        }
+        .btn-primary {
+            width: 100%;
+            padding: 0.85rem;
+            margin-top: 0.5rem;
+            border: none;
+            border-radius: 8px;
+            background: var(--accent);
+            color: #0f172a;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        header.dash-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 1.25rem 1.75rem;
+            border-radius: 12px;
+            margin-bottom: 1.75rem;
+        }
+        .section-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.75rem;
+        }
+        h2 { font-size: 1.15rem; margin-bottom: 1rem; color: var(--accent); }
+        table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+        th, td { text-align: left; padding: 0.75rem 0.9rem; border-bottom: 1px solid var(--border); }
+        th { color: var(--text-muted); font-weight: 600; text-transform: uppercase; font-size: 0.75rem; }
+        .tag { padding: 0.2rem 0.55rem; border-radius: 999px; font-size: 0.75rem; font-weight: 700; }
+        .tag-activo { background: rgba(34, 197, 94, 0.15); color: #86efac; }
+        .tag-inactivo { background: rgba(239, 68, 68, 0.15); color: #fca5a5; }
+    </style>
+</head>
+<body>
+    <div class="switcher">
+        <div><strong>🚲 Bike Store (SC-504)</strong> — Simulador Visual de Pantallas PHP + Oracle</div>
+        <div class="switcher-btns">
+            <button class="tab-btn active" onclick="mostrarVista('login', this)">1. Vista login.php</button>
+            <button class="tab-btn" onclick="mostrarVista('dashboard', this)">2. Vista listado_accesos.php (Cursores)</button>
+        </div>
+    </div>
+
+    <!-- VISTA 1: LOGIN.PHP -->
+    <div id="vista-login" class="view active">
+        <div class="login-wrapper">
+            <div class="login-card">
+                <span class="badge">SC-504 • ORACLE PL/SQL</span>
+                <h1 style="margin-bottom:0.35rem;">Bike Store</h1>
+                <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:1.5rem;">
+                    Autenticación auditada mediante <code>sp_validar_login</code>
+                </p>
+                <form onsubmit="event.preventDefault(); mostrarVista('dashboard', document.querySelectorAll('.tab-btn')[1]);">
+                    <div class="form-group">
+                        <label>Usuario del Sistema</label>
+                        <input type="text" value="bike_owner" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Contraseña</label>
+                        <input type="password" value="BikeStore1234Fide" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Probar Inicio de Sesión (Simular SP)</button>
+                </form>
+                <div style="margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--border);font-size:0.78rem;color:var(--text-muted);text-align:center;">
+                    Cero consultas <code>SELECT</code> directas • Cursores y Procedimientos Almacenados
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- VISTA 2: LISTADO_ACCESOS.PHP -->
+    <div id="vista-dashboard" class="view">
+        <div class="container">
+            <header class="dash-header">
+                <div>
+                    <h1>Sistema Transaccional Bike Store</h1>
+                    <p style="color:var(--text-muted);font-size:0.9rem;margin-top:0.25rem;">
+                        Sesión activa: <strong style="color:var(--accent);">Dueño del Esquema / Admin</strong>
+                        (Rol: <strong style="color:var(--accent);">ADMINISTRADOR</strong>) •
+                        Conteo de accesos auditados: <strong style="color:var(--accent);">5</strong>
+                    </p>
+                </div>
+                <button class="tab-btn" onclick="mostrarVista('login', document.querySelectorAll('.tab-btn')[0])">Cerrar Sesión</button>
+            </header>
+
+            <div class="section-card">
+                <h2>Control y Conteo de Accesos de Usuarios (Cursor: <code>sp_listar_usuarios_acceso</code>)</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Usuario</th>
+                            <th>Nombre Completo</th>
+                            <th>Rol</th>
+                            <th>Tienda</th>
+                            <th>Último Acceso</th>
+                            <th>Total Accesos</th>
+                            <th>Intentos Fallidos</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><strong>bike_owner</strong></td>
+                            <td>Dueño del Esquema / Admin</td>
+                            <td>ADMINISTRADOR</td>
+                            <td>TODAS / CENTRAL</td>
+                            <td>2026-11-09 07:30:12</td>
+                            <td>5</td>
+                            <td>0</td>
+                            <td><span class="tag tag-activo">ACTIVO</span></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><strong>dev_bike</strong></td>
+                            <td>Desarrollador Sistema</td>
+                            <td>DESARROLLADOR</td>
+                            <td>TODAS / CENTRAL</td>
+                            <td>2026-11-09 07:15:40</td>
+                            <td>3</td>
+                            <td>0</td>
+                            <td><span class="tag tag-activo">ACTIVO</span></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><strong>vendedor1</strong></td>
+                            <td>Cajero Tienda Central</td>
+                            <td>VENTAS</td>
+                            <td>TODAS / CENTRAL</td>
+                            <td>2026-11-08 18:22:10</td>
+                            <td>12</td>
+                            <td>1</td>
+                            <td><span class="tag tag-activo">ACTIVO</span></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td><strong>bodega1</strong></td>
+                            <td>Encargado de Inventario</td>
+                            <td>INVENTARIO</td>
+                            <td>TODAS / CENTRAL</td>
+                            <td>Sin registro</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td><span class="tag tag-activo">ACTIVO</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="section-card">
+                <h2>Estadísticas Analíticas por Rol (Cursor: <code>sp_listar_estadisticas_roles</code>)</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID Rol</th>
+                            <th>Rol del Sistema</th>
+                            <th>Cantidad de Usuarios</th>
+                            <th>Suma Total de Accesos</th>
+                            <th>Acceso Más Reciente</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td><strong>ADMINISTRADOR</strong></td><td>1</td><td>5</td><td>2026-11-09 07:30:12</td></tr>
+                        <tr><td>2</td><td><strong>DESARROLLADOR</strong></td><td>1</td><td>3</td><td>2026-11-09 07:15:40</td></tr>
+                        <tr><td>3</td><td><strong>VENTAS</strong></td><td>1</td><td>12</td><td>2026-11-08 18:22:10</td></tr>
+                        <tr><td>4</td><td><strong>INVENTARIO</strong></td><td>1</td><td>0</td><td>N/A</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="section-card">
+                <h2>Bitácora de Auditoría de Accesos (Cursor: <code>sp_listar_bitacora_accesos</code>)</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID Bitácora</th>
+                            <th>Usuario</th>
+                            <th>Nombre</th>
+                            <th>Rol</th>
+                            <th>Fecha y Hora</th>
+                            <th>Resultado</th>
+                            <th>Detalle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#21</td>
+                            <td>bike_owner</td>
+                            <td>Dueño del Esquema / Admin</td>
+                            <td>ADMINISTRADOR</td>
+                            <td>2026-11-09 07:30:12</td>
+                            <td><span class="tag tag-activo">EXITOSO</span></td>
+                            <td>Ingreso correcto al sistema Bike Store</td>
+                        </tr>
+                        <tr>
+                            <td>#20</td>
+                            <td>vendedor1</td>
+                            <td>Cajero Tienda Central</td>
+                            <td>VENTAS</td>
+                            <td>2026-11-08 18:21:55</td>
+                            <td><span class="tag tag-inactivo">FALLIDO</span></td>
+                            <td>Contraseña incorrecta</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function mostrarVista(vista, btn) {
+            document.querySelectorAll('.view').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById('vista-' + vista).classList.add('active');
+            btn.classList.add('active');
+        }
+    </script>
+</body>
+</html>
